@@ -129,13 +129,13 @@ public class MainGameLoop {
 
 
         fpsCounter.start();
-        //entity.setRotX(20);
-        //entity.setRotY(20);
         double t_prev = glfwGetTime();
         while(glfwWindowShouldClose(DisplayManager.getWindow()) == GL_FALSE) {
 
             double t = glfwGetTime();
-            entity.increaseRotation((float)Math.sin((t-t_prev)*100),(float)Math.sin((t-t_prev)*100),0);
+            double elapsed = t-t_prev;
+            //entity.increaseRotation((float)Math.sin(((float)elapsed)*Math.PI*2),(float)Math.sin(((float)elapsed)*Math.PI*2),0);
+            entity.increaseRotation(((float)elapsed/5.0f)*360,((float)elapsed/5.0f)*360,0);
             t_prev = t;
 
             camera.move();
