@@ -94,7 +94,7 @@ public class OBJLoader {
             indiciesArray[i] = indicies.get(i);
         }
 
-        return loader.loadToVAO(verticesArray, textureArray, indiciesArray);
+        return loader.loadToVAO(verticesArray, textureArray, normalsArray, indiciesArray);
     }
 
         private static void processVertex(String[] vertexData, List<Integer> indicies,

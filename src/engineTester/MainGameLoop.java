@@ -2,6 +2,7 @@ package engineTester;
 
 import entities.Camera;
 import entities.Entity;
+import entities.Light;
 import misc.FpsCounter;
 import models.RawModel;
 import models.TexturedModel;
@@ -32,8 +33,8 @@ public class MainGameLoop {
         FpsCounter fpsCounter = new FpsCounter(DisplayManager.getWindow());
 
 
-        RawModel model = OBJLoader.loadObjModel("stall.obj", loader);
-        ModelTexture texture = new ModelTexture(loader.loadTexture("stall.png"));
+        RawModel model = OBJLoader.loadObjModel("/objects/dragon.obj", loader);
+        ModelTexture texture = new ModelTexture(loader.loadTexture("objects/stall.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
 
         System.out.println("GL Vendor    : " + glGetString(GL_VENDOR));
@@ -46,6 +47,7 @@ public class MainGameLoop {
 
 
         Entity entity = new Entity(texturedModel, new Vector3f(0,-1,-30), 0,0,0,1);
+        Light light = new Light(new Vector3f(0,0,-20), new Vector3f(1,1,1));
 
         Camera camera = new Camera();
 
@@ -63,6 +65,7 @@ public class MainGameLoop {
             camera.move();
             renderer.prepare();
             shader.start();
+            shader.loadLight(light);
             shader.loadViewMatrix(camera);
 
             fpsCounter.updateFPS();
