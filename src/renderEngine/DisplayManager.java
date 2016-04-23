@@ -21,7 +21,7 @@ public class DisplayManager {
 
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
-    private static final int FPS_CAP = 60;
+    private static final int FPS_CAP = 120;
 
     // The window handle
     private static long window;
@@ -123,10 +123,10 @@ public class DisplayManager {
         glfwMakeContextCurrent(window);
 
         // Disable v-sync
-        // glfwSwapInterval(0);
+        glfwSwapInterval(0);
 
         //Enable v-sync
-        glfwSwapInterval(1);
+        //glfwSwapInterval(1);
 
         // Make the window visible
         glfwShowWindow(window);
@@ -137,7 +137,7 @@ public class DisplayManager {
 
     }
     public static void updateDisplay() {
-        //sync(FPS_CAP);
+        sync(FPS_CAP);
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
