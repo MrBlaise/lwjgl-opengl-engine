@@ -34,7 +34,7 @@ public class MainGameLoop {
 
 
         RawModel model = OBJLoader.loadObjModel("/objects/dragon.obj", loader);
-        ModelTexture texture = new ModelTexture(loader.loadTexture("objects/stall.png"));
+        ModelTexture texture = new ModelTexture(loader.loadTexture("objects/white.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
 
         System.out.println("GL Vendor    : " + glGetString(GL_VENDOR));
