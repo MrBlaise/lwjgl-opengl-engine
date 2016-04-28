@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import shaders.StaticShader;
+import textures.ModelTexture;
 import toolbox.Maths;
 import util.joml.Matrix4f;
 
@@ -48,6 +49,8 @@ public class Renderer {
         Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(), entity.getRotX(),
                 entity.getRotY(), entity.getRotZ(), entity.getScale());
         shader.loadTransformationMatrix(transformationMatrix);
+        ModelTexture texture = texturedModel.getTexture();
+        shader.loadShineVariale(texture.getShineDamper(), texture.getReflectivity());
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getTextureID());
         GL11.glDrawElements(GL11.GL_TRIANGLES, rawModel.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);

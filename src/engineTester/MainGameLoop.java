@@ -34,8 +34,11 @@ public class MainGameLoop {
 
 
         RawModel model = OBJLoader.loadObjModel("/objects/dragon.obj", loader);
-        ModelTexture texture = new ModelTexture(loader.loadTexture("objects/white.png"));
-        TexturedModel texturedModel = new TexturedModel(model, texture);
+        TexturedModel texturedModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("objects/white.png")));
+
+        ModelTexture texture = texturedModel.getTexture();
+        texture.setShineDamper(15);
+        texture.setReflectivity(1);
 
         System.out.println("GL Vendor    : " + glGetString(GL_VENDOR));
         System.out.println("GL Renderer  : " + glGetString(GL_RENDERER));

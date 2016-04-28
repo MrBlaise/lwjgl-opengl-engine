@@ -1,10 +1,11 @@
 package renderEngine;
 
-import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.glfw.GLFWKeyCallback;
-import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+
+import java.nio.DoubleBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
@@ -18,6 +19,8 @@ public class DisplayManager {
     // We need to strongly reference callback instances.
     private static GLFWErrorCallback errorCallback;
     private static GLFWKeyCallback keyCallback;
+    private static GLFWMouseButtonCallback mouseButtonCallback;
+    private static GLFWCursorPosCallback mousePositionCallback;
 
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
@@ -109,6 +112,18 @@ public class DisplayManager {
             }
         });
 
+        glfwSetMouseButtonCallback(window, mouseButtonCallback = new GLFWMouseButtonCallback() {
+            @Override
+            public void invoke(long window, int button, int action, int mods) {
+            }
+        });
+
+        glfwSetCursorPosCallback(window, mousePositionCallback = new GLFWCursorPosCallback() {
+            @Override
+            public void invoke(long window, double xpos, double ypos) {
+            }
+        });
+
         // Get the resolution of the primary monitor
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
@@ -144,6 +159,8 @@ public class DisplayManager {
     public static void closeDisplay() {
         glfwDestroyWindow(window);
         keyCallback.release();
+        mouseButtonCallback.release();
+        mousePositionCallback.release();
         glfwTerminate();
         errorCallback.release();
     }

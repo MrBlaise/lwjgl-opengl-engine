@@ -1,7 +1,11 @@
 package entities;
 
+import org.lwjgl.BufferUtils;
 import renderEngine.DisplayManager;
 import util.joml.Vector3f;
+
+import java.nio.DoubleBuffer;
+
 import static org.lwjgl.glfw.GLFW.*;
 
 /**
