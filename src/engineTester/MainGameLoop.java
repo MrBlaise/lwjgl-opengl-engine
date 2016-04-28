@@ -33,8 +33,8 @@ public class MainGameLoop {
         FpsCounter fpsCounter = new FpsCounter(DisplayManager.getWindow());
 
 
-        RawModel model = OBJLoader.loadObjModel("/objects/dragon.obj", loader);
-        TexturedModel texturedModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("objects/white.png")));
+        RawModel model = OBJLoader.loadObjModel("/objects/stall.obj", loader);
+        TexturedModel texturedModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("objects/stall.png")));
 
         ModelTexture texture = texturedModel.getTexture();
         texture.setShineDamper(15);
