@@ -62,7 +62,8 @@ public class MainGameLoop {
             double t = glfwGetTime();
             double elapsed = t-t_prev;
             //entity.increaseRotation((float)Math.sin(((float)elapsed)*Math.PI*2),(float)Math.sin(((float)elapsed)*Math.PI*2),0);
-            entity.increaseRotation(0,((float)elapsed/5.0f)*360,0);
+            entity.increaseRotation(((float)elapsed/5.0f)*360,((float)elapsed/5.0f)*360,((float)elapsed/5.0f)*360);
+            entity.setPosition(new Vector3f((float)Math.sin(t)*5 ,(float)Math.sin(t)*5,-30));
             t_prev = t;
 
             camera.move();

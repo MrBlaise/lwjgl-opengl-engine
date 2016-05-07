@@ -15,11 +15,11 @@ uniform mat4 viewMatrix;
 uniform vec3 lightPosition;
 
 void main() {
-    vec4 worldPosition = transformationMatrix *  vec4(position, 1.0);
-    gl_Position = projectionMatrix * viewMatrix * worldPosition;
+    vec4 worldPosition = vec4(position, 1.0) * transformationMatrix;
+    gl_Position = worldPosition * viewMatrix * projectionMatrix;
     fragmentTexture = textureCoords;
 
-    surfaceNormal = (transformationMatrix * vec4(normal,0.0)).xyz;
+    surfaceNormal = (inverse(transformationMatrix) * vec4(normal,1.0)).xyz;
     toLightVector = lightPosition - worldPosition.xyz;
-    toCameraVector = (inverse(viewMatrix) * vec4(0.0,0.0,0.0,1.0)).xyz - worldPosition.xyz;
+    toCameraVector = (viewMatrix * vec4(0.0,0.0,0.0,1.0)).xyz - worldPosition.xyz;
 }

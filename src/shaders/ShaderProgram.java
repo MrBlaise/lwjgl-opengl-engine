@@ -78,7 +78,7 @@ public abstract class ShaderProgram {
 
     protected void loadMatrix(int location, Matrix4f matrix) {
         matrixBuffer = matrix.get(matrixBuffer);
-        GL20.glUniformMatrix4fv(location, false, matrixBuffer);
+        GL20.glUniformMatrix4fv(location, true, matrixBuffer);
     }
 
     private static int loadShader(String file, int type) {
